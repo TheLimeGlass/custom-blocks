@@ -1,0 +1,43 @@
+{
+  "blocks": [
+    {
+      "id": "money_block",
+      "type": "stairs",
+      "properties": {
+        "strength": 1.5,
+        "mapColor": "NONE",
+        "hasCollision": true,
+        "soundType": "STONE",
+        "lightEmission": 0,
+        "explosionResistance": 6.0,
+        "requiresCorrectToolForDrops": true,
+        "isRandomlyTicking": false,
+        "friction": 0.6,
+        "speedFactor": 1.0,
+        "jumpFactor": 1.0,
+        "canOcclude": true,
+        "isAir": false,
+        "ignitedByLava": false,
+        "liquid": false,
+        "forceSolidOff": false,
+        "forceSolidOn": false,
+        "pushReaction": "NORMAL",
+        "spawnTerrainParticles": true,
+        "instrument": "BASS",
+        "replaceable": false,
+        "isValidSpawn": true,
+        "isRedstoneConductor": true,
+        "isSuffocating": true,
+        "isViewBlocking": true,
+        "hasPostProcess": false,
+        "emissiveRendering": false,
+        "dynamicShape": false
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "money"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+name: custom-blocks
+authors: [LimeGlass]
+version: 1.0
+api-version: 1.21
+main: me.limeglass.customblocks.CustomBlocks
+libraries:
+  - "org.jetbrains.kotlin:kotlin-stdlib:@kotlin_version@" # Sometimes this is needed, runtime Maven library loader is weird
+  - "com.google.code.gson:gson:@gson_version@"

@@ -1,0 +1,69 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+	apply from: 'dependencies.gradle'
+}
+
+plugins {
+	id 'io.papermc.paperweight.userdev' version '2.0.0-beta.16'
+	id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+	id 'xyz.jpenilla.run-paper' version '2.3.1'
+	id 'java'
+}
+
+def supportedJava = 21
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(supportedJava))
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.compilerArgs += ['-source', '' + supportedJava, '-target', '' + supportedJava]
+}
+
+compileTestJava.options.encoding = 'UTF-8'
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+	mavenCentral()
+
+	// Spigot
+	maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+
+	// Bungeecord
+	maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+
+	// Paper
+	maven { url 'https://repo.papermc.io/repository/maven-public/' }
+
+}
+
+dependencies {
+	//implementation "org.spigotmc:spigot-api:${project.spigot_version}"
+	paperweight.paperDevBundle(project.spigot_version)
+
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:${project.kotlin_version}"
+	implementation "com.google.code.gson:gson:${project.gson_version}"
+}
+
+tasks {
+	runServer {
+		minecraftVersion(project.minecraft_version)
+	}
+}
+
+tasks.assemble {
+	dependsOn(tasks.reobfJar)
+}
+
+processResources {
+	filter ReplaceTokens, tokens: [
+		'kotlin_version' : project.property('kotlin_version'),
+		'gson_version' : project.property('gson_version'),
+		'version' : project.version,
+	]
+}
+
+jar {
+	archiveVersion.set(project.plugin_version)
+}

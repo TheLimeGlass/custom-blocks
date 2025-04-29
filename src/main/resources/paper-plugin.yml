@@ -1,0 +1,7 @@
+name: custom-blocks
+authors: [LimeGlass]
+version: 1.0
+api-version: 1.21
+bootstrapper: me.limeglass.customblocks.CustomBlocksBootstrap
+loader: me.limeglass.customblocks.CustomBlocksPluginLoader
+main: me.limeglass.customblocks.CustomBlocks
