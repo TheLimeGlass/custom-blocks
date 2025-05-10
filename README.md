@@ -5,7 +5,7 @@ Allows registration of custom blocks through NMS registries on Paper.
 namespace = Identifier = ResourceLocation
 
 This code assumes that the client has a namespace for the created custom block namespace.
-You CANNOT register custom blocks with a vanilla client and no resource packs.
+You CANNOT register custom blocks with a vanilla client and/or no resource packs.
 The client will not accept the custom block namespace and automatically disconnect from the server if it cannot find the associated custom block namespace that the server sent.
 
 
