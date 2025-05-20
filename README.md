@@ -1,5 +1,5 @@
 # Custom Blocks
-Allows registration of custom blocks through NMS registries on Paper.
+Allows registration of custom blocks and items through NMS registries on Paper.
 
 ## Notes
 namespace = Identifier = ResourceLocation
