@@ -53,7 +53,7 @@ class CustomBlocksBootstrap : PluginBootstrap {
                     val id = blockObject["id"]?.asString?.lowercase() ?: return@forEach
                     println("Registering block: $id")
                     val namespace = id.substringBefore(":", "minecraft")
-                    val value = if (!namespace.contains(":")) id else id.substringAfter(":")
+                    val value = if (!id.contains(":")) id else id.substringAfter(":")
                     val propertiesJson = blockObject["properties"]?.asJsonObject
 
                     val blockProperties = propertiesJson?.let {
@@ -71,7 +71,7 @@ class CustomBlocksBootstrap : PluginBootstrap {
                     val id = itemObject["id"]?.asString ?: return@forEach
                     println("Registering item: $id")
                     val namespace = id.substringBefore(":", "minecraft")
-                    val value = if (!namespace.contains(":")) id else id.substringAfter(":")
+                    val value = if (!id.contains(":")) id else id.substringAfter(":")
 
                     val itemKey = ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(namespace, value))
                     Registry.register(BuiltInRegistries.ITEM, itemKey, Item(Item.Properties().setId(itemKey)))
