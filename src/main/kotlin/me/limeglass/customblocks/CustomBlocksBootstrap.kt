@@ -50,9 +50,10 @@ class CustomBlocksBootstrap : PluginBootstrap {
 
                 jsonObject["blocks"]?.asJsonArray?.forEach { blockElement ->
                     val blockObject = blockElement.asJsonObject
-                    val id = blockObject["id"]?.asString ?: return@forEach
+                    val id = blockObject["id"]?.asString?.lowercase() ?: return@forEach
                     println("Registering block: $id")
                     val namespace = id.substringBefore(":", "minecraft")
+                    val value = if (!namespace.contains(":")) id else id.substringAfter(":")
                     val propertiesJson = blockObject["properties"]?.asJsonObject
 
                     val blockProperties = propertiesJson?.let {
@@ -61,7 +62,7 @@ class CustomBlocksBootstrap : PluginBootstrap {
                         ).result().orElse(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE))
                     } ?: BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
 
-                    val blockKey = ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(namespace, id))
+                    val blockKey = ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(namespace, value))
                     Registry.register(BuiltInRegistries.BLOCK, blockKey, Block(blockProperties.setId(blockKey)))
                 }
 
@@ -70,8 +71,9 @@ class CustomBlocksBootstrap : PluginBootstrap {
                     val id = itemObject["id"]?.asString ?: return@forEach
                     println("Registering item: $id")
                     val namespace = id.substringBefore(":", "minecraft")
+                    val value = if (!namespace.contains(":")) id else id.substringAfter(":")
 
-                    val itemKey = ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(namespace, id))
+                    val itemKey = ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(namespace, value))
                     Registry.register(BuiltInRegistries.ITEM, itemKey, Item(Item.Properties().setId(itemKey)))
                 }
             }
