@@ -15,4 +15,4 @@ The custom item registry does not have a CODEC at the time of writting this.
 
 Any file prefixed with `-` hyphen symbol will be considered disabled, and not be registered.
 
-Currently built for 1.21.4, should work on future versions assuming Mojang doesn't change the registry methods.
+Currently built for 1.21.5, should work on future versions assuming Mojang doesn't change the registry methods.
