@@ -16,3 +16,5 @@ The custom item registry does not have a CODEC at the time of writting this.
 Any file prefixed with `-` hyphen symbol will be considered disabled, and not be registered.
 
 Currently built for 1.21.5, should work on future versions assuming Mojang doesn't change the registry methods.
+
+This plugin does not work with other plugins that utilize the Material class. Since this is injecting custom blocks and items before Spigot registers the Material enum, the ID index will be out of order. So this plugin is designed for fully custom servers.
